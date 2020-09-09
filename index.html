@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Eliodoro Staging API - v0.1.2</title>
+    <title>REST API de Toku. v0.3.0</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -281,7 +281,7 @@
     </style>
     <link href="stylesheets/screen-d7720f12.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch-ea811c3e.js"></script>
+      <script src="javascripts/all-e9bde216.js"></script>
 
   </head>
 
@@ -304,27 +304,54 @@
               <a href="#" data-language-name="java">Java</a>
               <a href="#" data-language-name="go">Go</a>
         </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#eliodoro-staging-api-with-api-keys-2" class="toc-h1 toc-link" data-title="Eliodoro Staging API with API keys - 2 v1.0.2">Eliodoro Staging API with API keys - 2 v1.0.2</a>
+            <a href="#rest-api-de-toku-" class="toc-h1 toc-link" data-title="REST API de Toku. v0.3.0">REST API de Toku. v0.3.0</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#autenticacion" class="toc-h1 toc-link" data-title="Autenticación">Autenticación</a>
           </li>
           <li>
-            <a href="#eliodoro-staging-api-with-api-keys-2-payments" class="toc-h1 toc-link" data-title="payments">payments</a>
+            <a href="#rest-api-de-toku--pagos-" class="toc-h1 toc-link" data-title="Pagos 💳">Pagos 💳</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-or-modify-a-new-payment-document" class="toc-h2 toc-link" data-title="Create or modify a new payment document">Create or modify a new payment document</a>
+                    <a href="#crear-o-modificar-un-pago" class="toc-h2 toc-link" data-title="Crear o Modificar un Pago">Crear o Modificar un Pago</a>
                   </li>
                   <li>
-                    <a href="#delete-a-payment-object" class="toc-h2 toc-link" data-title="Delete a Payment object">Delete a Payment object</a>
+                    <a href="#modificar-pago" class="toc-h2 toc-link" data-title="Modificar Pago">Modificar Pago</a>
+                  </li>
+                  <li>
+                    <a href="#borrar-un-objeto-payment" class="toc-h2 toc-link" data-title="Borrar un objeto Payment">Borrar un objeto Payment</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+            <a href="#rest-api-de-toku--deudas-" class="toc-h1 toc-link" data-title="Deudas 💰">Deudas 💰</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#crear-o-modificar-deuda" class="toc-h2 toc-link" data-title="Crear o Modificar Deuda">Crear o Modificar Deuda</a>
+                  </li>
+                  <li>
+                    <a href="#modificar-deuda" class="toc-h2 toc-link" data-title="Modificar Deuda">Modificar Deuda</a>
+                  </li>
+                  <li>
+                    <a href="#eliminar-deuda" class="toc-h2 toc-link" data-title="Eliminar Deuda">Eliminar Deuda</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#esquemas" class="toc-h1 toc-link" data-title="Esquemas">Esquemas</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#tocS_Debt" class="toc-h2 toc-link" data-title="Debt">Debt</a>
+                  </li>
+                  <li>
+                    <a href="#tocS_HTTPError" class="toc-h2 toc-link" data-title="HTTPError">HTTPError</a>
+                  </li>
                   <li>
                     <a href="#tocS_HTTPValidationError" class="toc-h2 toc-link" data-title="HTTPValidationError">HTTPValidationError</a>
                   </li>
@@ -335,7 +362,10 @@
                     <a href="#tocS_Payment" class="toc-h2 toc-link" data-title="Payment">Payment</a>
                   </li>
                   <li>
-                    <a href="#tocS_PaymentBase" class="toc-h2 toc-link" data-title="PaymentBase">PaymentBase</a>
+                    <a href="#tocS_PaymentDelete" class="toc-h2 toc-link" data-title="PaymentDelete">PaymentDelete</a>
+                  </li>
+                  <li>
+                    <a href="#tocS_PaymentMethod" class="toc-h2 toc-link" data-title="PaymentMethod">PaymentMethod</a>
                   </li>
                   <li>
                     <a href="#tocS_ValidationError" class="toc-h2 toc-link" data-title="ValidationError">ValidationError</a>
@@ -349,65 +379,73 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <!-- Generator: Widdershins v4.0.1 -->
-
-<h1 id="eliodoro-staging-api-with-api-keys-2">Eliodoro Staging API with API keys - 2 v1.0.2</h1>
+        <h1 id="rest-api-de-toku-">REST API de Toku. v0.3.0</h1>
 
 <blockquote>
-<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
+<p>Scrollea hacia abajo para ejemplos de código, requests y respuestas. Selecciona un lenguaje para ejemplos de código desde uno de los <em>tabs</em> arriba o desde el menú de navegación de tu móvil.</p>
 </blockquote>
 
-<p>API for comunication from Elidoro to the world in staging phase</p>
+<p>¡Bienvenido a Toku.! 🤖 🚀</p>
 
+<p>En esta documentación encontrarás lo necesario para utilizar nuestra API (Application Programming Interfaces), la cual es la interfaz para la integración del servicio prestado por Eliodoro junto con las aplicaciones y programas de nuestros clientes.</p>
+
+<p>Toda la API de Toku. entrega respuestas en JSON con códigos HTTP para decir el éxito de la operación. En los <em>requests</em> debes incluir el <code>Content-Type</code> como <code>application/json</code> y por ende, el body debe ser un JSON correcto.</p>
+
+<p>Todas las request deben ser hechas con este url base:</p>
+
+<blockquote>
 <p>Base URLs:</p>
 
-<ul>
-<li><a href="https://api-gateway-qp76dmqroq-uc.a.run.app">https://api-gateway-qp76dmqroq-uc.a.run.app</a></li>
-</ul>
-<h1 id='authentication'>Authentication</h1>
+<p>https://api.toku.cl</p>
+</blockquote>
+<h1 id='autenticacion'>Autenticación</h1>
+<p>Puedes comunicarte con nuestra API una vez que te hayas registrado con nosotros y te hayamos compartido una API Key, la cual debes poner en cada una de las llamadas hacia nosotros como se describe a continuación:</p>
+
 <ul>
 <li>API Key (api_key)
 
 <ul>
-<li>Parameter Name: <strong>key</strong>, in: query. </li>
+<li>Nombre del parámetro: <strong>x-api-key</strong>, in: header. </li>
 </ul></li>
 </ul>
 
-<h1 id="eliodoro-staging-api-with-api-keys-2-payments">payments</h1>
+<h1 id="rest-api-de-toku--pagos-">Pagos 💳</h1>
 
-<p>Object that represent a payment for certain debt and that Eliodoro uses to inform to your debtors.</p>
-<h2 id='create-or-modify-a-new-payment-document'>Create or modify a new payment document</h2>
+<p>Los objetos <em>Payment</em> representan el <strong>pago</strong> hecho de una <strong>deuda</strong> que está registrada con nosotros.</p>
+<h2 id='crear-o-modificar-un-pago'>Crear o Modificar un Pago</h2>
 <p><a id="opIdcreate_update_payment_payments_create_post"></a></p>
 
 <blockquote>
-<p>Code samples</p>
+<p>Ejemplos de código</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app/payments <span class="se">\</span>
+curl <span class="nt">-X</span> POST https://api.toku.cl/payments <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway-qp76dmqroq-uc.a.run.app/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway-qp76dmqroq-uc.a.run.app</span>
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.toku.cl/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
-  "payment_amount": 0,
-  "payment_date": "2019-08-24T14:15:22Z",
-  "payment_method": "string",
-  "period_id": "string",
-  "product_id": "string"
+  "payment_amount": 10000,
+  "payment_date": "2020-08-16T19:20:30-04:00",
+  "payment_method": "PAC",
+  "period_id": "202008",
+  "product_id": "9897af7987d9245d"
 }</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api-gateway-qp76dmqroq-uc.a.run.app/payments</span><span class="dl">'</span><span class="p">,</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/payments</span><span class="dl">'</span><span class="p">,</span>
 <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">inputBody</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
   <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -421,22 +459,33 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span>
   <span class="ss">params: </span><span class="p">{</span>
   <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
 
 <span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"payment_amount"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="s">"payment_date"</span><span class="p">:</span> <span class="s">"2020-08-16T19:20:30-04:00"</span><span class="p">,</span>
+  <span class="s">"payment_method"</span><span class="p">:</span> <span class="s">"PAC"</span><span class="p">,</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 
@@ -447,6 +496,7 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
     <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
 <span class="p">);</span>
 
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
@@ -455,7 +505,7 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 <span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="s1">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
         <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
        <span class="p">)</span>
@@ -469,7 +519,7 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 
  <span class="c1">// ...</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api-gateway-qp76dmqroq-uc.a.run.app/payments"</span><span class="o">);</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/payments"</span><span class="o">);</span>
 <span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"POST"</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
@@ -495,10 +545,11 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
         <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
         <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
     <span class="p">}</span>
 
     <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
-    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"https://api-gateway-qp76dmqroq-uc.a.run.app/payments"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/payments"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
 
     <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
@@ -509,84 +560,107 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 </code></pre></div>
 <p><code>POST /payments</code></p>
 
-<p>Create or modify a payment object for one specific debt.</p>
-
-<ul>
-<li><strong>product_id</strong>: Each debt has to be referenced by its product_id.</li>
-<li><strong>period_id</strong>: The id that you use to reference the period of the debt.</li>
-<li><strong>payment_date</strong>: The moment of the payment.</li>
-<li><strong>payment_amount</strong>: How much the debtor has paid.</li>
-<li><strong>payment_method</strong>: The method the debtor used to pay you.</li>
-</ul>
+<p>Crear o modificar un objeto <strong>pago</strong> asociado a una <strong>deuda</strong> en específico.</p>
 
 <blockquote>
-<p>Body parameter</p>
+<p>Parámetros en Body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-24T14:15:22Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nl">"payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-16T19:20:30-04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="create-or-modify-a-new-payment-document-parameters">Parameters</h3>
+<h3 id="crear-o-modificar-un-pago-parameters">Parámetros</h3>
 
 <table><thead>
 <tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>body</td>
 <td>body</td>
 <td><a href="#schemapayment">Payment</a></td>
-<td>true</td>
-<td>none</td>
+<td>Si</td>
+<td></td>
 </tr>
 <tr>
 <td>» payment_amount</td>
 <td>body</td>
 <td>integer</td>
-<td>false</td>
-<td>none</td>
+<td>No</td>
+<td>El monto que se pagó de la deuda.</td>
 </tr>
 <tr>
 <td>» payment_date</td>
 <td>body</td>
 <td>string(date-time)</td>
-<td>false</td>
-<td>none</td>
+<td>No</td>
+<td>Fecha y hora en la cual se registro el pago de la deuda en su sistema. Debe estar en formato <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a>.</td>
 </tr>
 <tr>
 <td>» payment_method</td>
 <td>body</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
 </tr>
 <tr>
 <td>» period_id</td>
 <td>body</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
 </tr>
 <tr>
 <td>» product_id</td>
 <td>body</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+</tbody></table>
+<h4 id='descripciones-detalladas'>Descripciones detalladas</h4>
+<p><strong>» payment_date</strong>: Fecha y hora en la cual se registro el pago de la deuda en su sistema. Debe estar en formato <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a>.
+ Puede ser sólo la fecha (2020-08-26) o como timestamp (2020-08-26T12:06:34Z), ten en consideración que se asumirá hora UTC en tanto no especifiques lo contrario.</p>
+<h4 id='valores-posibles'>Valores posibles</h4>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» payment_method</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>Other</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Example responses</p>
+<p>Ejemplos de respuesta</p>
 
 <p>200 Response</p>
 </blockquote>
@@ -594,33 +668,45 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="create-or-modify-a-new-payment-document-responses">Responses</h3>
+<h3 id="crear-o-modificar-un-pago-responses">Respuestas</h3>
 
 <table><thead>
 <tr>
 <th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>200</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>The payment was updated succesfully</td>
+<td>Operación realizada con éxito</td>
 <td><a href="#schemamessage">Message</a></td>
 </tr>
 <tr>
 <td>201</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
-<td>The payment was created succesfully</td>
+<td>El pago fue creado con éxito.</td>
 <td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
 </tr>
 <tr>
 <td>404</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>The debt was not found</td>
-<td><a href="#schemamessage">Message</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
 </tr>
 <tr>
 <td>422</td>
@@ -628,41 +714,52 @@ curl <span class="nt">-X</span> POST https://api-gateway-qp76dmqroq-uc.a.run.app
 <td>Validation Error</td>
 <td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
 </tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
 </tbody></table>
 
 <aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
 api_key
 </aside>
-<h2 id='delete-a-payment-object'>Delete a Payment object</h2>
-<p><a id="opIddelete_paymentpayments_destroy_delete"></a></p>
+<h2 id='modificar-pago'>Modificar Pago</h2>
+<p><a id="opIdModificar_Pago_payments_update_put"></a></p>
 
 <blockquote>
-<p>Code samples</p>
+<p>Ejemplos de código</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.app/payments <span class="se">\</span>
+curl <span class="nt">-X</span> PUT https://api.toku.cl/payments <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway-qp76dmqroq-uc.a.run.app/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway-qp76dmqroq-uc.a.run.app</span>
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api.toku.cl/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
-  "period_id": "string",
-  "product_id": "string"
+  "payment_amount": 10000,
+  "payment_date": "2020-08-16T19:20:30-04:00",
+  "payment_method": "PAC",
+  "period_id": "202008",
+  "product_id": "9897af7987d9245d"
 }</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api-gateway-qp76dmqroq-uc.a.run.app/payments</span><span class="dl">'</span><span class="p">,</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/payments</span><span class="dl">'</span><span class="p">,</span>
 <span class="p">{</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">inputBody</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PUT</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
   <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -676,22 +773,33 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span>
   <span class="ss">params: </span><span class="p">{</span>
   <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
 
 <span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"payment_amount"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="s">"payment_date"</span><span class="p">:</span> <span class="s">"2020-08-16T19:20:30-04:00"</span><span class="p">,</span>
+  <span class="s">"payment_method"</span><span class="p">:</span> <span class="s">"PAC"</span><span class="p">,</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 
@@ -702,6 +810,7 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
     <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
 <span class="p">);</span>
 
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
@@ -710,7 +819,7 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 <span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'DELETE'</span><span class="p">,</span><span class="s1">'https://api-gateway-qp76dmqroq-uc.a.run.app/payments'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'PUT'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
         <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
        <span class="p">)</span>
@@ -724,7 +833,309 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 
  <span class="c1">// ...</span>
 
-</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api-gateway-qp76dmqroq-uc.a.run.app/payments"</span><span class="o">);</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/payments"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"PUT"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight go tab-go"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+       <span class="s">"bytes"</span>
+       <span class="s">"net/http"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"PUT"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/payments"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
+
+    <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
+    <span class="n">resp</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="c">// ...</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<p><code>PUT /payments</code></p>
+
+<p>Modificar un objeto <strong>pago</strong> asociado a una <strong>deuda</strong> en específico.</p>
+
+<blockquote>
+<p>Parámetros en Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-16T19:20:30-04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="modificar-pago-parameters">Parámetros</h3>
+
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemapayment">Payment</a></td>
+<td>Si</td>
+<td></td>
+</tr>
+<tr>
+<td>» payment_amount</td>
+<td>body</td>
+<td>integer</td>
+<td>No</td>
+<td>El monto que se pagó de la deuda.</td>
+</tr>
+<tr>
+<td>» payment_date</td>
+<td>body</td>
+<td>string(date-time)</td>
+<td>No</td>
+<td>Fecha y hora en la cual se registro el pago de la deuda en su sistema. Debe estar en formato <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a>.</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>body</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+<tr>
+<td>» period_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
+</tr>
+<tr>
+<td>» product_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+</tbody></table>
+<h4 id='descripciones-detalladas-2'>Descripciones detalladas</h4>
+<p><strong>» payment_date</strong>: Fecha y hora en la cual se registro el pago de la deuda en su sistema. Debe estar en formato <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a>.
+ Puede ser sólo la fecha (2020-08-26) o como timestamp (2020-08-26T12:06:34Z), ten en consideración que se asumirá hora UTC en tanto no especifiques lo contrario.</p>
+<h4 id='valores-posibles-2'>Valores posibles</h4>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» payment_method</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>» payment_method</td>
+<td>Other</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Ejemplos de respuesta</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="modificar-pago-responses">Respuestas</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Operación realizada con éxito</td>
+<td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>422</td>
+<td><a href="https://tools.ietf.org/html/rfc2518#section-10.3">Unprocessable Entity</a></td>
+<td>Validation Error</td>
+<td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
+api_key
+</aside>
+<h2 id='borrar-un-objeto-payment'>Borrar un objeto Payment</h2>
+<p><a id="opIddelete_payment_payments_destroy_delete"></a></p>
+
+<blockquote>
+<p>Ejemplos de código</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl <span class="nt">-X</span> DELETE https://api.toku.cl/payments <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.toku.cl/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
+  "period_id": "202008",
+  "product_id": "9897af7987d9245d"
+}</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/payments</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
+
+<span class="c1">// Define array of request body.</span>
+<span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'DELETE'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/payments'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
+        <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
+       <span class="p">)</span>
+    <span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">());</span>
+ <span class="p">}</span>
+ <span class="k">catch</span> <span class="p">(</span><span class="nx">\GuzzleHttp\Exception\BadResponseException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle exception or api errors.</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+ <span class="p">}</span>
+
+ <span class="c1">// ...</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/payments"</span><span class="o">);</span>
 <span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"DELETE"</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
@@ -750,10 +1161,11 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
         <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
         <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
     <span class="p">}</span>
 
     <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
-    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">,</span> <span class="s">"https://api-gateway-qp76dmqroq-uc.a.run.app/payments"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/payments"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
 
     <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
@@ -764,57 +1176,52 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 </code></pre></div>
 <p><code>DELETE /payments</code></p>
 
-<p>Delete one payment object created previously for one specific debt.</p>
-
-<ul>
-<li><strong>product_id</strong>: Each debt has to be referenced by its product_id.</li>
-<li><strong>period_id</strong>: The id that you use to reference the period of the debt.</li>
-</ul>
+<p>Elimina un objeto <strong>pago</strong> creado anteriormente para una <strong>deuda</strong> en específico.</p>
 
 <blockquote>
-<p>Body parameter</p>
+<p>Parámetros en Body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="delete-a-payment-object-parameters">Parameters</h3>
+<h3 id="borrar-un-objeto-payment-parameters">Parámetros</h3>
 
 <table><thead>
 <tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>body</td>
 <td>body</td>
-<td><a href="#schemapaymentbase">PaymentBase</a></td>
-<td>true</td>
-<td>none</td>
+<td><a href="#schemapaymentdelete">PaymentDelete</a></td>
+<td>Si</td>
+<td></td>
 </tr>
 <tr>
 <td>» period_id</td>
 <td>body</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
 </tr>
 <tr>
 <td>» product_id</td>
 <td>body</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Example responses</p>
+<p>Ejemplos de respuesta</p>
 
 <p>200 Response</p>
 </blockquote>
@@ -822,27 +1229,39 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="delete-a-payment-object-responses">Responses</h3>
+<h3 id="borrar-un-objeto-payment-responses">Respuestas</h3>
 
 <table><thead>
 <tr>
 <th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>200</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>The payment was succesfully deleted</td>
+<td>Operación realizada con éxito</td>
 <td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
 </tr>
 <tr>
 <td>404</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>The debt or payment was not found</td>
-<td><a href="#schemamessage">Message</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
 </tr>
 <tr>
 <td>422</td>
@@ -850,16 +1269,1336 @@ curl <span class="nt">-X</span> DELETE https://api-gateway-qp76dmqroq-uc.a.run.a
 <td>Validation Error</td>
 <td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
 </tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
 </tbody></table>
 
 <aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
 api_key
 </aside>
-<h1 id='schemas'>Schemas</h1>
-<h2 id="tocS_HTTPValidationError">HTTPValidationError</h2>
 
-<!-- backwards compatibility -->
+<h1 id="rest-api-de-toku--deudas-">Deudas 💰</h1>
+
+<p>Los objetos <em>Debt</em> representan una <strong>deuda</strong> que algún deudor tiene con el cliente. Este objeto es la principal fuente de información para que Eliodoro determine la mejor hora y canal por el cual contactarse con dicho deudor, así que procura darnos al menos el email y el número de telefono para sacarle el mayor provecho a nuestro servicio y a Eliodoro 😉.</p>
+<h2 id='crear-o-modificar-deuda'>Crear o Modificar Deuda</h2>
+<p><a id="opIdCrear_o_Modificar_Deuda_debts_post"></a></p>
+
+<blockquote>
+<p>Ejemplos de código</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl <span class="nt">-X</span> POST https://api.toku.cl/debts <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.toku.cl/debts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
+  "car_brand": "string",
+  "car_model": "string",
+  "debt_amount": 1,
+  "debtor_name": "El Juan Nieves",
+  "debtor_rut": "12345678K",
+  "default_reason": "string",
+  "email": "string",
+  "link_pat": "https://www.google.cl",
+  "link_payment": "https://www.google.cl",
+  "period_id": "202008",
+  "phone_number": "+56987658765",
+  "product_id": "9897af7987d9245d",
+  "regular_payment_method": "PAC"
+}</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/debts</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"car_brand"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"car_model"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"debt_amount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">"debtor_name"</span><span class="p">:</span> <span class="s">"El Juan Nieves"</span><span class="p">,</span>
+  <span class="s">"debtor_rut"</span><span class="p">:</span> <span class="s">"12345678K"</span><span class="p">,</span>
+  <span class="s">"default_reason"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"email"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"link_pat"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"link_payment"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"phone_number"</span><span class="p">:</span> <span class="s">"+56987658765"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span><span class="p">,</span>
+  <span class="s">"regular_payment_method"</span><span class="p">:</span> <span class="s">"PAC"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
+
+<span class="c1">// Define array of request body.</span>
+<span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
+        <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
+       <span class="p">)</span>
+    <span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">());</span>
+ <span class="p">}</span>
+ <span class="k">catch</span> <span class="p">(</span><span class="nx">\GuzzleHttp\Exception\BadResponseException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle exception or api errors.</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+ <span class="p">}</span>
+
+ <span class="c1">// ...</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/debts"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"POST"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight go tab-go"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+       <span class="s">"bytes"</span>
+       <span class="s">"net/http"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/debts"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
+
+    <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
+    <span class="n">resp</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="c">// ...</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<p><code>POST /debts</code></p>
+
+<p>Crea o modifica un objeto <strong>deuda</strong> la cual representa una unidad a la cual Eliodoro debe contactar. </p>
+
+<p>Mientras más datos ingreses, es más probable que Eliodoro pueda responder más preguntas de sus deudores.</p>
+
+<blockquote>
+<p>Parámetros en Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"car_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"car_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debt_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Juan Nieves"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_rut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678K"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_pat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+56987658765"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regular_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="crear-o-modificar-deuda-parameters">Parámetros</h3>
+
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemadebt">Debt</a></td>
+<td>Si</td>
+<td></td>
+</tr>
+<tr>
+<td>» car_brand</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Marca de auto asociada a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» car_model</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Modelo de auto asociado a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» debt_amount</td>
+<td>body</td>
+<td>integer</td>
+<td>No</td>
+<td>El monto de la deuda en pesos chilenos sin puntos. Por ejemplo, 10000.</td>
+</tr>
+<tr>
+<td>» debtor_name</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Nombre con el cual nos referiremos al deudor, aquí puedes personalizarlo todo lo que quieras. Entrégalo como nombre propio: Juan Nieves.</td>
+</tr>
+<tr>
+<td>» debtor_rut</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Rut del deudor sin puntos ni guión. Por ejemplo, si el rut es 12.345.678-K, entonces entrégalo así: 12345678K.</td>
+</tr>
+<tr>
+<td>» default_reason</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Contiene la razón de rechazo de la deuda con la primera letra en mayúsculas.</td>
+</tr>
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Correo del deudor a contactar.</td>
+</tr>
+<tr>
+<td>» link_pat</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link para inscribir (o actualizar) el pago automático con tarjeta (o PAT). Debe ser un url válido, por lo que debe comenzar con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» link_payment</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link de pago para el deudor específico. Se recomienda que sea único para que haya seguimiento de este link. Debe partir con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» period_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
+</tr>
+<tr>
+<td>» phone_number</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Número de teléfono del deudor a contactar. Este número debe ser de celular dado los canales con los que nos comunicamos. Se admite sólo el siguiente formato: &#39;+56987654321&#39;.</td>
+</tr>
+<tr>
+<td>» product_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>body</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-posibles-3'>Valores posibles</h4>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Other</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Ejemplos de respuesta</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="crear-o-modificar-deuda-responses">Respuestas</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Operación realizada con éxito</td>
+<td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>La deuda fue creada con éxito.</td>
+<td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>422</td>
+<td><a href="https://tools.ietf.org/html/rfc2518#section-10.3">Unprocessable Entity</a></td>
+<td>Validation Error</td>
+<td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
+api_key
+</aside>
+<h2 id='modificar-deuda'>Modificar Deuda</h2>
+<p><a id="opIdModificar_Deuda_debts_put"></a></p>
+
+<blockquote>
+<p>Ejemplos de código</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl <span class="nt">-X</span> PUT https://api.toku.cl/debts <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api.toku.cl/debts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
+  "car_brand": "string",
+  "car_model": "string",
+  "debt_amount": 1,
+  "debtor_name": "El Juan Nieves",
+  "debtor_rut": "12345678K",
+  "default_reason": "string",
+  "email": "string",
+  "link_pat": "https://www.google.cl",
+  "link_payment": "https://www.google.cl",
+  "period_id": "202008",
+  "phone_number": "+56987658765",
+  "product_id": "9897af7987d9245d",
+  "regular_payment_method": "PAC"
+}</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/debts</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PUT</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"car_brand"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"car_model"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"debt_amount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">"debtor_name"</span><span class="p">:</span> <span class="s">"El Juan Nieves"</span><span class="p">,</span>
+  <span class="s">"debtor_rut"</span><span class="p">:</span> <span class="s">"12345678K"</span><span class="p">,</span>
+  <span class="s">"default_reason"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"email"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"link_pat"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"link_payment"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"phone_number"</span><span class="p">:</span> <span class="s">"+56987658765"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span><span class="p">,</span>
+  <span class="s">"regular_payment_method"</span><span class="p">:</span> <span class="s">"PAC"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
+
+<span class="c1">// Define array of request body.</span>
+<span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'PUT'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
+        <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
+       <span class="p">)</span>
+    <span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">());</span>
+ <span class="p">}</span>
+ <span class="k">catch</span> <span class="p">(</span><span class="nx">\GuzzleHttp\Exception\BadResponseException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle exception or api errors.</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+ <span class="p">}</span>
+
+ <span class="c1">// ...</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/debts"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"PUT"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight go tab-go"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+       <span class="s">"bytes"</span>
+       <span class="s">"net/http"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"PUT"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/debts"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
+
+    <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
+    <span class="n">resp</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="c">// ...</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<p><code>PUT /debts</code></p>
+
+<p>Modifica un objeto <strong>deuda</strong> la cual representa una unidad a la que Eliodoro debe contactar.</p>
+
+<blockquote>
+<p>Parámetros en Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"car_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"car_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debt_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Juan Nieves"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_rut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678K"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_pat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+56987658765"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regular_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="modificar-deuda-parameters">Parámetros</h3>
+
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemadebt">Debt</a></td>
+<td>Si</td>
+<td></td>
+</tr>
+<tr>
+<td>» car_brand</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Marca de auto asociada a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» car_model</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Modelo de auto asociado a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» debt_amount</td>
+<td>body</td>
+<td>integer</td>
+<td>No</td>
+<td>El monto de la deuda en pesos chilenos sin puntos. Por ejemplo, 10000.</td>
+</tr>
+<tr>
+<td>» debtor_name</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Nombre con el cual nos referiremos al deudor, aquí puedes personalizarlo todo lo que quieras. Entrégalo como nombre propio: Juan Nieves.</td>
+</tr>
+<tr>
+<td>» debtor_rut</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Rut del deudor sin puntos ni guión. Por ejemplo, si el rut es 12.345.678-K, entonces entrégalo así: 12345678K.</td>
+</tr>
+<tr>
+<td>» default_reason</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Contiene la razón de rechazo de la deuda con la primera letra en mayúsculas.</td>
+</tr>
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Correo del deudor a contactar.</td>
+</tr>
+<tr>
+<td>» link_pat</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link para inscribir (o actualizar) el pago automático con tarjeta (o PAT). Debe ser un url válido, por lo que debe comenzar con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» link_payment</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link de pago para el deudor específico. Se recomienda que sea único para que haya seguimiento de este link. Debe partir con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» period_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
+</tr>
+<tr>
+<td>» phone_number</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Número de teléfono del deudor a contactar. Este número debe ser de celular dado los canales con los que nos comunicamos. Se admite sólo el siguiente formato: &#39;+56987654321&#39;.</td>
+</tr>
+<tr>
+<td>» product_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>body</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-posibles-4'>Valores posibles</h4>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Other</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Ejemplos de respuesta</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="modificar-deuda-responses">Respuestas</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Operación realizada con éxito</td>
+<td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>422</td>
+<td><a href="https://tools.ietf.org/html/rfc2518#section-10.3">Unprocessable Entity</a></td>
+<td>Validation Error</td>
+<td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
+api_key
+</aside>
+<h2 id='eliminar-deuda'>Eliminar Deuda</h2>
+<p><a id="opIdEliminar_Deuda_debts_delete"></a></p>
+
+<blockquote>
+<p>Ejemplos de código</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl <span class="nt">-X</span> DELETE https://api.toku.cl/debts <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'x-api-key: API_KEY'</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.toku.cl/debts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.toku.cl</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
+  "car_brand": "string",
+  "car_model": "string",
+  "debt_amount": 1,
+  "debtor_name": "El Juan Nieves",
+  "debtor_rut": "12345678K",
+  "default_reason": "string",
+  "email": "string",
+  "link_pat": "https://www.google.cl",
+  "link_payment": "https://www.google.cl",
+  "period_id": "202008",
+  "phone_number": "+56987658765",
+  "product_id": "9897af7987d9245d",
+  "regular_payment_method": "PAC"
+}</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-api-key</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.toku.cl/debts</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">inputBody</span><span class="p">),</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+<span class="p">}</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">"car_brand"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"car_model"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"debt_amount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">"debtor_name"</span><span class="p">:</span> <span class="s">"El Juan Nieves"</span><span class="p">,</span>
+  <span class="s">"debtor_rut"</span><span class="p">:</span> <span class="s">"12345678K"</span><span class="p">,</span>
+  <span class="s">"default_reason"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"email"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"link_pat"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"link_payment"</span><span class="p">:</span> <span class="s">"https://www.google.cl"</span><span class="p">,</span>
+  <span class="s">"period_id"</span><span class="p">:</span> <span class="s">"202008"</span><span class="p">,</span>
+  <span class="s">"phone_number"</span><span class="p">:</span> <span class="s">"+56987658765"</span><span class="p">,</span>
+  <span class="s">"product_id"</span><span class="p">:</span> <span class="s">"9897af7987d9245d"</span><span class="p">,</span>
+  <span class="s">"regular_payment_method"</span><span class="p">:</span> <span class="s">"PAC"</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">body</span><span class="p">,</span>  <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'x-api-key'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">();</span>
+
+<span class="c1">// Define array of request body.</span>
+<span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'DELETE'</span><span class="p">,</span><span class="s1">'https://api.toku.cl/debts'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
+        <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
+       <span class="p">)</span>
+    <span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">());</span>
+ <span class="p">}</span>
+ <span class="k">catch</span> <span class="p">(</span><span class="nx">\GuzzleHttp\Exception\BadResponseException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle exception or api errors.</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+ <span class="p">}</span>
+
+ <span class="c1">// ...</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.toku.cl/debts"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"DELETE"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight go tab-go"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+       <span class="s">"bytes"</span>
+       <span class="s">"net/http"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"x-api-key"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span>
+    <span class="n">req</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">,</span> <span class="s">"https://api.toku.cl/debts"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">Header</span> <span class="o">=</span> <span class="n">headers</span>
+
+    <span class="n">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span>
+    <span class="n">resp</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="c">// ...</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<p><code>DELETE /debts</code></p>
+
+<p>Elimina un objeto <strong>deuda</strong> junto con las interacciones que hayan sucedido bajo esta <strong>deuda</strong> con el deudor.</p>
+
+<blockquote>
+<p>Parámetros en Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"car_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"car_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debt_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Juan Nieves"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_rut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678K"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_pat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+56987658765"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regular_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="eliminar-deuda-parameters">Parámetros</h3>
+
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>En</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemadebt">Debt</a></td>
+<td>Si</td>
+<td></td>
+</tr>
+<tr>
+<td>» car_brand</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Marca de auto asociada a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» car_model</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Modelo de auto asociado a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>» debt_amount</td>
+<td>body</td>
+<td>integer</td>
+<td>No</td>
+<td>El monto de la deuda en pesos chilenos sin puntos. Por ejemplo, 10000.</td>
+</tr>
+<tr>
+<td>» debtor_name</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Nombre con el cual nos referiremos al deudor, aquí puedes personalizarlo todo lo que quieras. Entrégalo como nombre propio: Juan Nieves.</td>
+</tr>
+<tr>
+<td>» debtor_rut</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Rut del deudor sin puntos ni guión. Por ejemplo, si el rut es 12.345.678-K, entonces entrégalo así: 12345678K.</td>
+</tr>
+<tr>
+<td>» default_reason</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Contiene la razón de rechazo de la deuda con la primera letra en mayúsculas.</td>
+</tr>
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Correo del deudor a contactar.</td>
+</tr>
+<tr>
+<td>» link_pat</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link para inscribir (o actualizar) el pago automático con tarjeta (o PAT). Debe ser un url válido, por lo que debe comenzar con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» link_payment</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Link de pago para el deudor específico. Se recomienda que sea único para que haya seguimiento de este link. Debe partir con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>» period_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
+</tr>
+<tr>
+<td>» phone_number</td>
+<td>body</td>
+<td>string</td>
+<td>No</td>
+<td>Número de teléfono del deudor a contactar. Este número debe ser de celular dado los canales con los que nos comunicamos. Se admite sólo el siguiente formato: &#39;+56987654321&#39;.</td>
+</tr>
+<tr>
+<td>» product_id</td>
+<td>body</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>body</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-posibles-5'>Valores posibles</h4>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>» regular_payment_method</td>
+<td>Other</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Ejemplos de respuesta</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="eliminar-deuda-responses">Respuestas</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Significado</th>
+<th>Descripción</th>
+<th>Esquema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Operación realizada con éxito</td>
+<td><a href="#schemamessage">Message</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Falta de credenciales.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Falta de permisos. No tienes por qué estar ahi 👀.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>El recurso no fue encontrado.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+<tr>
+<td>422</td>
+<td><a href="https://tools.ietf.org/html/rfc2518#section-10.3">Unprocessable Entity</a></td>
+<td>Validation Error</td>
+<td><a href="#schemahttpvalidationerror">HTTPValidationError</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Superaste el número máximos de request permitidos, espera un poquito.</td>
+<td><a href="#schemahttperror">HTTPError</a></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Para llevar a cabo esta operación, debes estar autenticado, lo que significa que debes seguir uno de estos métodos: 
+api_key
+</aside>
+<h1 id='esquemas'>Esquemas</h1>
+<h2 id="tocS_Debt">Debt</h2>
+
+<p><a id="schemadebt"></a>
+<a id="schema_Debt"></a>
+<a id="tocSdebt"></a>
+<a id="tocsdebt"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"car_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"car_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debt_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Juan Nieves"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"debtor_rut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678K"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_pat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"link_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.cl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+56987658765"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regular_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Debt</p>
+<h3 id='propiedades'>Propiedades</h3>
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>car_brand</td>
+<td>string</td>
+<td>No</td>
+<td>Marca de auto asociada a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>car_model</td>
+<td>string</td>
+<td>No</td>
+<td>Modelo de auto asociado a la deuda. <strong>Nota</strong>: Esta variable fue construida específicamente para la industria de seguros de auto.</td>
+</tr>
+<tr>
+<td>debt_amount</td>
+<td>integer</td>
+<td>No</td>
+<td>El monto de la deuda en pesos chilenos sin puntos. Por ejemplo, 10000.</td>
+</tr>
+<tr>
+<td>debtor_name</td>
+<td>string</td>
+<td>No</td>
+<td>Nombre con el cual nos referiremos al deudor, aquí puedes personalizarlo todo lo que quieras. Entrégalo como nombre propio: Juan Nieves.</td>
+</tr>
+<tr>
+<td>debtor_rut</td>
+<td>string</td>
+<td>No</td>
+<td>Rut del deudor sin puntos ni guión. Por ejemplo, si el rut es 12.345.678-K, entonces entrégalo así: 12345678K.</td>
+</tr>
+<tr>
+<td>default_reason</td>
+<td>string</td>
+<td>No</td>
+<td>Contiene la razón de rechazo de la deuda con la primera letra en mayúsculas.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>No</td>
+<td>Correo del deudor a contactar.</td>
+</tr>
+<tr>
+<td>link_pat</td>
+<td>string</td>
+<td>No</td>
+<td>Link para inscribir (o actualizar) el pago automático con tarjeta (o PAT). Debe ser un url válido, por lo que debe comenzar con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>link_payment</td>
+<td>string</td>
+<td>No</td>
+<td>Link de pago para el deudor específico. Se recomienda que sea único para que haya seguimiento de este link. Debe partir con <code>http://</code> o <code>https://</code>.</td>
+</tr>
+<tr>
+<td>period_id</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td>No</td>
+<td>Número de teléfono del deudor a contactar. Este número debe ser de celular dado los canales con los que nos comunicamos. Se admite sólo el siguiente formato: &#39;+56987654321&#39;.</td>
+</tr>
+<tr>
+<td>product_id</td>
+<td>string</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+<tr>
+<td>regular_payment_method</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+</tbody></table>
+
+<h2 id="tocS_HTTPError">HTTPError</h2>
+
+<p><a id="schemahttperror"></a>
+<a id="schema_HTTPError"></a>
+<a id="tocShttperror"></a>
+<a id="tocshttperror"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>HTTPError</p>
+<h3 id='propiedades-2'>Propiedades</h3>
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>Si</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Si</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="tocS_HTTPValidationError">HTTPValidationError</h2>
 
 <p><a id="schemahttpvalidationerror"></a>
 <a id="schema_HTTPValidationError"></a>
@@ -879,28 +2618,24 @@ api_key
 
 </span></code></pre></div>
 <p>HTTPValidationError</p>
-<h3 id='properties'>Properties</h3>
+<h3 id='propiedades-3'>Propiedades</h3>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>detail</td>
 <td>[<a href="#schemavalidationerror">ValidationError</a>]</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
+<td>No</td>
+<td></td>
 </tr>
 </tbody></table>
 
 <h2 id="tocS_Message">Message</h2>
-
-<!-- backwards compatibility -->
 
 <p><a id="schemamessage"></a>
 <a id="schema_Message"></a>
@@ -912,134 +2647,172 @@ api_key
 
 </span></code></pre></div>
 <p>Message</p>
-<h3 id='properties-2'>Properties</h3>
+<h3 id='propiedades-4'>Propiedades</h3>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>message</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td></td>
 </tr>
 </tbody></table>
 
 <h2 id="tocS_Payment">Payment</h2>
-
-<!-- backwards compatibility -->
 
 <p><a id="schemapayment"></a>
 <a id="schema_Payment"></a>
 <a id="tocSpayment"></a>
 <a id="tocspayment"></a></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-24T14:15:22Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nl">"payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-16T19:20:30-04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
 <p>Payment</p>
-<h3 id='properties-3'>Properties</h3>
+<h3 id='propiedades-5'>Propiedades</h3>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>payment_amount</td>
 <td>integer</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
+<td>No</td>
+<td>El monto que se pagó de la deuda.</td>
 </tr>
 <tr>
 <td>payment_date</td>
 <td>string(date-time)</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
+<td>No</td>
+<td>Fecha y hora en la cual se registro el pago de la deuda en su sistema. Debe estar en formato <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a>.<br /> Puede ser sólo la fecha (2020-08-26) o como timestamp (2020-08-26T12:06:34Z), ten en consideración que se asumirá hora UTC en tanto no especifiques lo contrario.</td>
 </tr>
 <tr>
 <td>payment_method</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
+<td><a href="#schemapaymentmethod">PaymentMethod</a></td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
 </tr>
 <tr>
 <td>period_id</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
 </tr>
 <tr>
 <td>product_id</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
 </tr>
 </tbody></table>
 
-<h2 id="tocS_PaymentBase">PaymentBase</h2>
+<h2 id="tocS_PaymentDelete">PaymentDelete</h2>
 
-<!-- backwards compatibility -->
-
-<p><a id="schemapaymentbase"></a>
-<a id="schema_PaymentBase"></a>
-<a id="tocSpaymentbase"></a>
-<a id="tocspaymentbase"></a></p>
+<p><a id="schemapaymentdelete"></a>
+<a id="schema_PaymentDelete"></a>
+<a id="tocSpaymentdelete"></a>
+<a id="tocspaymentdelete"></a></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nl">"period_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9897af7987d9245d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
-<p>PaymentBase</p>
-<h3 id='properties-4'>Properties</h3>
+<p>PaymentDelete</p>
+<h3 id='propiedades-6'>Propiedades</h3>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>period_id</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID que usas para referenciar el periodo de la deuda que nos has dado. Debe estar en formato AAAAMM, sólo se admiten 6 caracteres.</td>
 </tr>
 <tr>
 <td>product_id</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td>El ID con el que reconoces la deuda (o el producto adeudado) que nos has dado. Largo permitido: 1 - 256 caracteres.</td>
+</tr>
+</tbody></table>
+
+<h2 id="tocS_PaymentMethod">PaymentMethod</h2>
+
+<p><a id="schemapaymentmethod"></a>
+<a id="schema_PaymentMethod"></a>
+<a id="tocSpaymentmethod"></a>
+<a id="tocspaymentmethod"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"PAC"</span><span class="w">
+
+</span></code></pre></div>
+<p>PaymentMethod</p>
+<h3 id='propiedades-7'>Propiedades</h3>
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PaymentMethod</td>
+<td>string</td>
+<td>No</td>
+<td>Método ocupado por el deudor para realizar el pago.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-numerados'>Valores numerados</h4>
+<table><thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PaymentMethod</td>
+<td>PAC</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>PAT</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>WebPay</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>Transference</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>Other</td>
 </tr>
 </tbody></table>
 
 <h2 id="tocS_ValidationError">ValidationError</h2>
-
-<!-- backwards compatibility -->
 
 <p><a id="schemavalidationerror"></a>
 <a id="schema_ValidationError"></a>
@@ -1055,36 +2828,32 @@ api_key
 
 </span></code></pre></div>
 <p>ValidationError</p>
-<h3 id='properties-5'>Properties</h3>
+<h3 id='propiedades-8'>Propiedades</h3>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Requerido</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>loc</td>
 <td>[string]</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td></td>
 </tr>
 <tr>
 <td>msg</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td></td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
+<td>Si</td>
+<td></td>
 </tr>
 </tbody></table>
 
